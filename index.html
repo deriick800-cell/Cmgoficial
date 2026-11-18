@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#071326">
+  <meta name="description" content="Conexão Missionária Global — conteúdos bíblicos, histórias, estudos e recursos cristãos.">
+  <title>Conexão Missionária Global</title>
+  <style>
+    :root{
+      --navy:#071326; --navy2:#0c1d38; --gold:#d9b45b; --gold2:#f4d98c;
+      --cream:#f3eee4; --muted:#aeb8c8; --line:rgba(224,190,105,.42);
+      --shadow:0 12px 30px rgba(0,0,0,.35);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--navy);color:var(--cream);font-family:Georgia,"Times New Roman",serif}
+    button,input{font:inherit}
+    a{color:inherit;text-decoration:none}
+    .topline{height:4px;background:linear-gradient(90deg,#7b5920,var(--gold2),#8d6a2c)}
+    header{position:sticky;top:0;z-index:20;background:rgba(5,15,31,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+    .navwrap{max-width:1180px;margin:auto;min-height:76px;padding:10px 22px;display:flex;align-items:center;gap:22px}
+    .brand{display:flex;align-items:center;gap:10px;min-width:210px}
+    .brandmark{width:48px;height:48px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;color:var(--gold2);font-size:23px;box-shadow:0 0 15px #d9b45b33}
+    .brandname{font-size:14px;line-height:1.1;letter-spacing:.7px;color:var(--gold2);font-weight:bold;text-transform:uppercase}
+    nav{display:flex;align-items:center;justify-content:center;gap:18px;flex:1;flex-wrap:wrap}
+    nav a,.navbtn{font:600 12px Arial,sans-serif;color:#f2ead7;letter-spacing:.2px;padding:10px 2px;border:0;background:none;cursor:pointer}
+    nav a:hover,.navbtn:hover{color:var(--gold2)}
+    .search{width:190px;display:flex;border:1px solid #8f7846;border-radius:22px;overflow:hidden;background:#fff}
+    .search input{width:100%;min-width:0;border:0;outline:0;padding:9px 12px;color:#172238;font:12px Arial}
+    .search button{border:0;background:#fff;color:#172238;padding:0 12px;cursor:pointer}
+    .mobile-toggle{display:none;background:none;border:1px solid var(--line);color:var(--gold2);padding:8px 11px;border-radius:8px}
+    main{max-width:1180px;margin:auto;padding:0 20px}
+    .hero{margin:20px auto 30px;position:relative;overflow:hidden;border:1px solid var(--line);border-radius:13px;background:linear-gradient(110deg,#08152a,#10294c);min-height:245px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;box-shadow:var(--shadow)}
+    .hero-copy{padding:34px 38px;position:relative;z-index:2}
+    .eyebrow{font:700 11px Arial,sans-serif;letter-spacing:2px;color:var(--gold2);text-transform:uppercase}
+    h1{font-size:clamp(28px,4vw,46px);line-height:1.05;margin:12px 0;color:#fff4d8}
+    .hero p{max-width:490px;color:#d4dbea;line-height:1.55;font-size:15px}
+    .gold-button{display:inline-flex;align-items:center;gap:9px;margin-top:10px;padding:11px 18px;border-radius:4px;border:1px solid var(--gold);background:linear-gradient(135deg,#f0d88e,#b58a39);color:#172036;font:700 12px Arial,sans-serif;cursor:pointer}
+    .hero-art{height:100%;min-height:245px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .hero-art:before{content:"";position:absolute;width:330px;height:330px;border-radius:50%;background:radial-gradient(circle,#d7ae5c55,transparent 68%);right:8%;top:-40px}
+    .hero-logo{position:relative;width:175px;height:175px;border:1px solid #d9b45b88;border-radius:50%;display:grid;place-items:center;color:#f4d98c;font-size:66px;box-shadow:0 0 45px #d9b45b22}
+    .hero-character{position:absolute;right:8px;bottom:-12px;width:115px;height:170px;display:flex;align-items:flex-end;justify-content:center;animation:float 3.2s ease-in-out infinite;pointer-events:none}
+    .hero-character .silhouette{font-size:100px;filter:drop-shadow(0 0 10px #d8ad54);transform-origin:bottom;animation:preach 4s ease-in-out infinite}
+    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    @keyframes preach{0%,100%{transform:rotate(-2deg)}50%{transform:rotate(2deg) scale(1.03)}}
+    section{scroll-margin-top:100px;margin:34px 0}
+    .section-head{display:flex;align-items:center;gap:14px;margin-bottom:17px}
+    .section-head h2{font-size:24px;margin:0;color:#fff1cc;white-space:nowrap}
+    .section-head h2 span{color:var(--gold)}
+    .rule{height:1px;background:linear-gradient(90deg,var(--gold),transparent);flex:1}
+    .tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}
+    .tab{border:1px solid #6f603d;background:#101f38;color:#e8dfc9;padding:8px 14px;border-radius:20px;font:600 11px Arial,sans-serif;cursor:pointer}
+    .tab.active,.tab:hover{background:linear-gradient(135deg,#f1d98f,#b58a39);color:#172036;border-color:#f1d98f}
+    .book-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px 15px}
+    .book-card{min-width:0;cursor:pointer;transition:transform .2s ease}
+    .book-card:hover{transform:translateY(-5px)}
+    .cover{aspect-ratio:2/3.05;border:1px solid var(--gold);border-radius:8px;overflow:hidden;background:linear-gradient(150deg,#173b68,#071326 65%,#8c6428);box-shadow:0 5px 16px #0008;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;padding:12px}
+    .cover img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .cover .cover-title{position:relative;z-index:1;color:#ffe49b;text-shadow:0 2px 4px #000;font-weight:bold;font-size:clamp(13px,1.4vw,19px);line-height:1.1;text-transform:uppercase}
+    .cover:after{content:"";position:absolute;inset:5px;border:1px solid #e4c16d88;border-radius:5px;pointer-events:none}
+    .bookmark{position:absolute;right:8px;top:0;width:14px;height:24px;background:#b72b35;clip-path:polygon(0 0,100% 0,100% 100%,50% 76%,0 100%);z-index:2}
+    .book-title{font:700 13px Arial,sans-serif;margin:8px 0 3px;color:#fff}
+    .book-meta{font:10px Arial,sans-serif;color:#aeb8c8;line-height:1.5}
+    .read-link{display:inline-block;margin-top:5px;color:var(--gold2);font:700 9px Arial,sans-serif;letter-spacing:.6px}
+    .feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+    .feature{border:1px solid var(--line);border-radius:9px;padding:18px;background:linear-gradient(145deg,#102541,#09162a);min-height:125px}
+    .feature .ico{font-size:24px;color:var(--gold2)}
+    .feature h3{font-size:16px;margin:8px 0 5px;color:#f3dfaa}
+    .feature p{font:12px/1.5 Arial,sans-serif;color:#b7c2d2;margin:0}
+    .bottom-banner{margin:40px 0 25px;border:1px solid var(--gold);border-radius:8px;overflow:hidden;box-shadow:var(--shadow);background:#080808}
+    .bottom-banner img{display:block;width:100%;height:auto}
+    footer{border-top:1px solid var(--line);background:#050e1d;padding:28px 20px;color:#aeb8c8}
+    .footer-inner{max-width:1180px;margin:auto;display:flex;justify-content:space-between;gap:20px;align-items:center;flex-wrap:wrap}
+    .footer-brand{color:var(--gold2);font-weight:bold;letter-spacing:1px}
+    .footer-links{display:flex;gap:16px;flex-wrap:wrap;font:11px Arial,sans-serif}
+    .footer-links a:hover{color:var(--gold2)}
+    .modal{position:fixed;inset:0;background:#000b;display:none;align-items:center;justify-content:center;padding:20px;z-index:50}
+    .modal.open{display:flex}
+    .modal-box{max-width:520px;width:100%;background:#0b1b32;border:1px solid var(--gold);border-radius:12px;padding:25px;box-shadow:var(--shadow)}
+    .modal-box h2{color:var(--gold2);margin-top:0}
+    .modal-box p{color:#d2d9e4;line-height:1.6}
+    .modal-actions{display:flex;gap:10px;flex-wrap:wrap}
+    .close{margin-left:auto;display:block;border:1px solid var(--line);background:transparent;color:#fff;padding:7px 12px;border-radius:6px;cursor:pointer}
+    .empty{grid-column:1/-1;padding:25px;text-align:center;color:var(--muted);border:1px dashed var(--line);border-radius:8px}
+    @media(max-width:900px){.book-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.navwrap{gap:12px}.brand{min-width:175px}.search{width:150px}nav{gap:10px}}
+    @media(max-width:650px){
+      .navwrap{min-height:64px;padding:8px 13px;flex-wrap:wrap}
+      .brand{flex:1;min-width:0}.brandmark{width:40px;height:40px;font-size:20px}.brandname{font-size:11px}
+      .mobile-toggle{display:block}
+      nav{display:none;order:4;width:100%;flex-basis:100%;justify-content:flex-start;padding:8px 0 4px;border-top:1px solid var(--line)}
+      nav.open{display:flex}
+      nav a{padding:8px 5px;font-size:11px}
+      .search{order:3;width:100%;flex-basis:100%}
+      main{padding:0 12px}
+      .hero{grid-template-columns:1fr;min-height:0;margin:12px auto 25px}
+      .hero-copy{padding:25px 22px 15px}.hero-art{min-height:130px}
+      .hero-logo{width:100px;height:100px;font-size:40px}.hero-character{height:130px;width:85px;right:10px}.hero-character .silhouette{font-size:78px}
+      .hero p{font-size:13px}
+      .section-head h2{font-size:20px}
+      .book-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px 10px}
+      .cover{padding:8px}.cover .cover-title{font-size:13px}
+      .book-title{font-size:11px}.book-meta{font-size:9px}
+      .feature-grid{grid-template-columns:repeat(2,1fr)}
+      .bottom-banner{margin:28px 0 20px}
+    }
+    @media(max-width:380px){.book-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.feature-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <div class="topline"></div>
+  <header>
+    <div class="navwrap">
+      <a class="brand" href="#inicio" aria-label="Conexão Missionária Global - início">
+        <span class="brandmark">✝</span>
+        <span class="brandname">Conexão<br>Missionária<br>Global</span>
+      </a>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu">☰</button>
+      <nav id="mainNav">
+        <a href="#inicio">Início</a>
+        <a href="#livros">Livros</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#testemunhos">Testemunhos</a>
+        <a href="#fotos">Fotos</a>
+        <a href="#trailers">Trailers</a>
+        <a href="#loja">Loja</a>
+        <a href="#contato">Contato</a>
+      </nav>
+      <form class="search" id="searchForm">
+        <input id="searchInput" type="search" placeholder="Buscar livros..." aria-label="Buscar livros">
+        <button type="submit" aria-label="Pesquisar">⌕</button>
+      </form>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Uma mensagem para todas as nações</div>
+        <h1>Conheça a Palavra.<br><span style="color:var(--gold2)">Compartilhe a esperança.</span></h1>
+        <p>Conteúdos bíblicos, histórias ilustradas e materiais para fortalecer a fé e anunciar o Evangelho.</p>
+        <a class="gold-button" href="#livros">EXPLORAR CONTEÚDOS <span>→</span></a>
+      </div>
+      <div class="hero-art" aria-label="Identidade visual missionária">
+        <div class="hero-logo">✝</div>
+        <div class="hero-character" title="Personagem animado"><span class="silhouette">🧑🏻‍💼</span></div>
+      </div>
+    </section>
+
+    <section id="livros">
+      <div class="section-head"><h2>▤ Últimas <span>Atualizações</span></h2><div class="rule"></div></div>
+      <div class="tabs" id="categoryTabs">
+        <button class="tab active" data-category="Todos">Todos</button>
+        <button class="tab" data-category="Bíblicas">Bíblicas</button>
+        <button class="tab" data-category="Estudos">Estudos</button>
+        <button class="tab" data-category="Infantis">Infantis</button>
+        <button class="tab" data-category="Missionárias">Missionárias</button>
+      </div>
+      <div class="book-grid" id="bookGrid"></div>
+    </section>
+
+    <section id="sobre">
+      <div class="section-head"><h2>Sobre a <span>Conexão Missionária</span></h2><div class="rule"></div></div>
+      <div class="feature-grid">
+        <article class="feature"><div class="ico">🌍</div><h3>Missões</h3><p>Compartilhando a mensagem de Cristo além das fronteiras.</p></article>
+        <article class="feature"><div class="ico">📖</div><h3>Ensino bíblico</h3><p>Materiais de leitura, estudo e crescimento espiritual.</p></article>
+        <article class="feature"><div class="ico">🕊️</div><h3>Esperança</h3><p>Conteúdos centrados na fé, na Palavra e em Jesus Cristo.</p></article>
+        <article class="feature"><div class="ico">👨‍👩‍👧‍👦</div><h3>Novas gerações</h3><p>Recursos para crianças, jovens e famílias.</p></article>
+      </div>
+    </section>
+
+    <section id="testemunhos">
+      <div class="section-head"><h2>✦ <span>Testemunhos</span></h2><div class="rule"></div></div>
+      <div class="feature"><h3>Compartilhe o que Deus tem feito</h3><p>Este espaço pode receber relatos, vídeos ou textos de testemunhos. Para publicar um testemunho, utilize o contato do projeto.</p></div>
+    </section>
+
+    <section id="fotos">
+      <div class="section-head"><h2>▧ <span>Fotos</span></h2><div class="rule"></div></div>
+      <div class="feature"><h3>Galeria missionária</h3><p>Adicione suas fotografias à pasta <strong>assets/fotos</strong> e personalize esta área com registros de cultos, eventos e ações missionárias.</p></div>
+    </section>
+
+    <section id="trailers">
+      <div class="section-head"><h2>▶ <span>Trailers</span></h2><div class="rule"></div></div>
+      <div class="feature"><h3>Vídeos e prévias</h3><p>Insira links de vídeos do YouTube nesta seção para apresentar livros, histórias e projetos.</p></div>
+    </section>
+
+    <section id="loja">
+      <div class="section-head"><h2>✧ <span>Loja</span></h2><div class="rule"></div></div>
+      <div class="feature"><h3>Materiais e publicações</h3><p>Área reservada para apresentar materiais do projeto. Os botões e links podem ser conectados aos seus canais de atendimento quando estiverem definidos.</p></div>
+    </section>
+
+    <section class="bottom-banner" aria-label="Banner de anúncio">
+      <img src="assets/banner-inferior.jpg" alt="Arrependei-vos, humilhai-vos e anunciai o Evangelho">
+    </section>
+
+    <section id="contato">
+      <div class="section-head"><h2><span>Contato</span></h2><div class="rule"></div></div>
+      <div class="feature"><h3>Conexão Missionária Global</h3><p>Para dúvidas, parcerias, testemunhos ou informações sobre os materiais, adicione aqui seu e-mail ou link de contato.</p></div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div><div class="footer-brand">✝ CONEXÃO MISSIONÁRIA GLOBAL</div><small>Jesus é o Senhor.</small></div>
+      <div class="footer-links"><a href="#inicio">Início</a><a href="#livros">Livros</a><a href="#testemunhos">Testemunhos</a><a href="#fotos">Fotos</a><a href="#trailers">Trailers</a><a href="#loja">Loja</a></div>
+      <small>© <span id="year"></span> Conexão Missionária Global</small>
+    </div>
+  </footer>
+
+  <div class="modal" id="bookModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-box">
+      <button class="close" id="closeModal">Fechar ✕</button>
+      <h2 id="modalTitle"></h2>
+      <p id="modalDescription"></p>
+      <div class="modal-actions"><button class="gold-button" id="readButton">Abrir leitura →</button></div>
+      <p style="font-size:11px;color:#9eabc0">Para ativar a leitura, informe o arquivo PDF ou a página de cada publicação no catálogo de livros dentro do arquivo index.html.</p>
+    </div>
+  </div>
+
+  <script>
+    // Edite os campos cover, description e url para ligar cada publicação à sua capa e leitura.
+    const books = [
+      {title:"A História da Criação", category:"Bíblicas", volume:"VOL. 01", updated:"06/11/2026", description:"A narrativa bíblica da criação, apresentada em formato ilustrado.", cover:"", url:"#"},
+      {title:"Adão e Eva — A Primeira Família", category:"Infantis", volume:"VOL. 01", updated:"06/11/2026", description:"Uma história ilustrada sobre Adão, Eva e o início da família humana.", cover:"", url:"#"},
+      {title:"Jesus, a Nossa Esperança", category:"Bíblicas", volume:"VOL. 01", updated:"06/11/2026", description:"Uma apresentação de Jesus Cristo, nossa esperança.", cover:"", url:"#"},
+      {title:"A Vitória de Cristo", category:"Bíblicas", volume:"VOL. 01", updated:"06/11/2026", description:"Uma publicação sobre a vitória de Cristo e a mensagem da cruz.", cover:"", url:"#"},
+      {title:"Reavivamento sem Retorno ao Altar", category:"Estudos", volume:"VOL. 01", updated:"06/11/2026", description:"Um chamado ao arrependimento, à Palavra e ao retorno ao altar.", cover:"", url:"#"},
+      {title:"Arca Kids — Aprendendo com a Bíblia", category:"Infantis", volume:"VOL. 01", updated:"06/11/2026", description:"Conteúdo bíblico ilustrado para crianças.", cover:"", url:"#"},
+      {title:"O Primeiro Amor — Volte ao Altar", category:"Estudos", volume:"VOL. 01", updated:"06/11/2026", description:"Um estudo sobre Apocalipse 2 e o retorno ao primeiro amor.", cover:"", url:"#"},
+      {title:"Eis-me Aqui, Envia-me a Mim", category:"Missionárias", volume:"VOL. 01", updated:"06/11/2026", description:"Uma reflexão missionária baseada em Isaías 6:8.", cover:"", url:"#"},
+      {title:"Deus Pelejará por Mim", category:"Bíblicas", volume:"VOL. 01", updated:"06/11/2026", description:"Uma mensagem de confiança no cuidado e na ação de Deus.", cover:"", url:"#"},
+      {title:"Um Novo Começo com Deus", category:"Estudos", volume:"VOL. 01", updated:"06/11/2026", description:"Uma mensagem sobre recomeço e caminhada com Deus.", cover:"", url:"#"}
+    ];
+    let activeCategory = "Todos";
+    let currentBook = null;
+    const grid = document.getElementById("bookGrid");
+    const modal = document.getElementById("bookModal");
+
+    function renderBooks(){
+      const query = document.getElementById("searchInput").value.trim().toLocaleLowerCase("pt-BR");
+      const filtered = books.filter(book =>
+        (activeCategory === "Todos" || book.category === activeCategory) &&
+        (book.title.toLocaleLowerCase("pt-BR").includes(query) || book.category.toLocaleLowerCase("pt-BR").includes(query))
+      );
+      grid.innerHTML = "";
+      if(!filtered.length){ grid.innerHTML = '<div class="empty">Nenhuma publicação encontrada.</div>'; return; }
+      filtered.forEach(book => {
+        const card = document.createElement("article");
+        card.className = "book-card";
+        card.tabIndex = 0;
+        card.setAttribute("role","button");
+        card.setAttribute("aria-label","Abrir detalhes de " + book.title);
+        const coverContent = book.cover
+          ? `<img src="${book.cover}" alt="Capa de ${book.title}">`
+          : `<span class="cover-title">${book.title}</span>`;
+        card.innerHTML = `<div class="cover"><span class="bookmark"></span>${coverContent}</div>
+          <div class="book-title">${book.title}</div>
+          <div class="book-meta">${book.volume}<br>ATUALIZADO: ${book.updated}</div>
+          <span class="read-link">CLIQUE PARA LER</span>`;
+        card.addEventListener("click",()=>openBook(book));
+        card.addEventListener("keydown",e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();openBook(book)}});
+        grid.appendChild(card);
+      });
+    }
+    function openBook(book){
+      currentBook = book;
+      document.getElementById("modalTitle").textContent = book.title;
+      document.getElementById("modalDescription").textContent = book.description;
+      modal.classList.add("open");
+    }
+    function closeBook(){modal.classList.remove("open")}
+    document.getElementById("closeModal").addEventListener("click",closeBook);
+    modal.addEventListener("click",e=>{if(e.target===modal)closeBook()});
+    document.getElementById("readButton").addEventListener("click",()=>{
+      if(currentBook && currentBook.url && currentBook.url !== "#"){window.open(currentBook.url,"_blank","noopener");}
+      else {alert("Adicione o caminho do PDF ou da página desta publicação no campo url do catálogo de livros.");}
+    });
+    document.getElementById("categoryTabs").addEventListener("click",e=>{
+      const btn=e.target.closest("button[data-category]"); if(!btn)return;
+      activeCategory=btn.dataset.category;
+      document.querySelectorAll(".tab").forEach(t=>t.classList.toggle("active",t===btn));
+      renderBooks();
+    });
+    document.getElementById("searchForm").addEventListener("submit",e=>{e.preventDefault();renderBooks()});
+    document.getElementById("searchInput").addEventListener("input",renderBooks);
+    document.getElementById("mobileToggle").addEventListener("click",()=>document.getElementById("mainNav").classList.toggle("open"));
+    document.querySelectorAll("#mainNav a").forEach(a=>a.addEventListener("click",()=>document.getElementById("mainNav").classList.remove("open")));
+    document.getElementById("year").textContent=new Date().getFullYear();
+    renderBooks();
+  </script>
+</body>
+</html>
